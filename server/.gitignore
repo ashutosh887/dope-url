@@ -131,3 +131,4 @@ dist
 
 # project specific
 chart.png
+build/
