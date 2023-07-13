@@ -2,24 +2,22 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { SERVER_ENDPOINT } from "../config";
 import axios from "axios";
+import bg from "../assets/bg.jpg";
 import { Box, Spinner, Text } from "@chakra-ui/react";
-import Background from "../components/Background";
 
 function RedirectContainer() {
   const [destination, setDestination] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const { shortId } = useParams();
+  const { id } = useParams();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     async function getData() {
       try {
-        const response = await axios.get(
-          `${SERVER_ENDPOINT}/api/url/${shortId}`
-        );
+        const response = await axios.get(`${SERVER_ENDPOINT}/api/url/${id}`);
         const { data } = response;
         setDestination(data?.destination);
       } catch (error) {
@@ -30,7 +28,7 @@ function RedirectContainer() {
     }
 
     getData();
-  }, [shortId]);
+  }, [id]);
 
   useEffect(() => {
     if (destination) {
@@ -69,28 +67,28 @@ function RedirectContainer() {
         display="flex"
         alignItems="center"
         justifyContent="center"
+        backgroundImage={bg}
+        bgSize="cover"
+        background={`${bg} no-repeat center center fixed`}
       >
         <Box
           pos="relative"
-          zIndex="2"
           padding="6"
-          border="2px solid white"
           rounded="lg"
           backgroundColor="rgba(0,0,0,0.3)"
         >
-          <Text fontSize="xl" fontWeight={400} color="white">
+          <Text fontSize="xl" fontWeight={300} color="white">
             No such route exists!
           </Text>
-          <Text fontSize="2xl" fontWeight={600} color="white">
+          <Text fontSize="2xl" fontWeight={500} color="white">
             Redirecting to homepage...
           </Text>
         </Box>
-        <Background />
       </Box>
     );
   }
 
-  return null; // You can customize the component to render when there is no destination or error
+  return null;
 }
 
 export default RedirectContainer;

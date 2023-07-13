@@ -1,19 +1,21 @@
 import { Box } from "@chakra-ui/react";
-import Background from "../components/Background";
 import URLForm from "../components/URLForm";
+import bg from "../assets/bg.jpg";
 
-const HomeContainer = () => {
+function Home() {
   return (
     <Box
       height="100%"
       display="flex"
       alignItems="center"
       justifyContent="center"
+      backgroundImage={bg}
+      bgSize="cover"
+      background={`${bg} no-repeat center center fixed`}
     >
       <URLForm />
-      <Background />
     </Box>
   );
-};
+}
 
-export default HomeContainer;
+export default Home;

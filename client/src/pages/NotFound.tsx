@@ -1,6 +1,7 @@
 import { Box, Button, Text } from "@chakra-ui/react";
-import Background from "../components/Background";
+import bg from "../assets/bg.jpg";
 import { useNavigate } from "react-router-dom";
+import routes from "../config/routes";
 
 function NotFound() {
   const navigate = useNavigate();
@@ -11,12 +12,13 @@ function NotFound() {
       display="flex"
       alignItems="center"
       justifyContent="center"
+      backgroundImage={bg}
+      bgSize="cover"
+      background={`${bg} no-repeat center center fixed`}
     >
       <Box
         pos="relative"
-        zIndex="2"
         padding="6"
-        border="2px solid white"
         display="flex"
         flexDirection="column"
         rounded="lg"
@@ -28,11 +30,10 @@ function NotFound() {
           Not found!
         </Text>
 
-        <Button onClick={() => navigate("/")} size="sm">
+        <Button onClick={() => navigate(routes.HOME)} size="sm">
           Home
         </Button>
       </Box>
-      <Background />
     </Box>
   );
 }

@@ -32,7 +32,7 @@ const URLForm = () => {
   }
 
   return (
-    <Box pos="relative" zIndex="2" backgroundColor="white" padding="6">
+    <Box pos="relative" backgroundColor="white" padding="6">
       <form onSubmit={handleSubmit}>
         <InputGroup>
           <Input
