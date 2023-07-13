@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import HomeContainer from "./container/HomeContainer";
 import RedirectContainer from "./container/RedirectContainer";
-import NotFound from "./pages/NotFound";
+import NotFound from "./container/NotFound";
 
 function App() {
   return (
