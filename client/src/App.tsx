@@ -9,7 +9,7 @@ function App() {
     <Routes>
       <Route path="/" element={<HomeContainer />} />
       <Route path="/:shortId" element={<RedirectContainer />} />
-      <Route path="*" element={<NotFound />} />
+      <Route path="/:shortId/*" element={<NotFound />} />
     </Routes>
   );
 }
