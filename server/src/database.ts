@@ -1,14 +1,14 @@
 import mongoose from 'mongoose';
-import config from 'config';
 
 async function connectDb() {
-  const dbUri = config.get('dbUri') as string;
+  const dbUri = process.env.DB_URI;
   try {
-    await mongoose
-      .connect(dbUri)
-      .then(() => {
-        console.log(`DB connected to ${dbUri}`);
-      });
+    const { connection } = await mongoose.connect(dbUri);
+    if (connection) {
+      console.log(
+        `Database connected successfully on host: ${connection.host}`
+      );
+    }
   } catch (e) {
     console.error(e);
   }

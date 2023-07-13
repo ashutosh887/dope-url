@@ -4,17 +4,19 @@ import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import cors from 'cors';
-import config from 'config';
+import dotenv from 'dotenv';
 import connectDb from './database';
 
 import routes from './routes';
 
 const app = express();
 
+dotenv.config();
+
 app.use(
   cors({
     credentials: true,
-    origin: config.get('corsOrigin'),
+    origin: '*',
   })
 );
 app.use(compression());
@@ -23,7 +25,7 @@ app.use(bodyParser.json());
 
 app.use('/', routes());
 
-const port = config.get('port');
+const port = process.env.PORT;
 const server = http.createServer(app);
 
 server.listen(port, () => {
